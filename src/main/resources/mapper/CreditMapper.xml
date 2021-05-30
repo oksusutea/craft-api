@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="naverz.craft.craftapi.mapper.CreditMapper">
+  <select id="getFreeCredit" resultType="java.math.BigDecimal">
+    SELECT freeCredit
+    FROM player_credit
+    WHERE playerId = #{playerId}
+  </select>
+
+  <select id="getPaidCredit" resultType="java.math.BigDecimal">
+    SELECT paidCredit
+    FROM player_credit
+    WHERE playerId = #{playerId}
+  </select>
+
+  <update id="updateCredit">
+    UPDATE player_credit
+    SET paidCredit = #{paidCredit},
+    freeCredit = #{freeCredit}
+    WHERE playerId = #{playerId}
+  </update>
+
+</mapper>

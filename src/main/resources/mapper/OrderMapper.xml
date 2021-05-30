@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="naverz.craft.craftapi.mapper.OrderMapper">
+
+  <select id="getItemQuantity" resultType="Integer">
+    SELECT IFNULL(quantity, 0)
+    FROM player_inventory
+    WHERE playerId = #{playerId}
+    AND itemId = #{itemId}
+  </select>
+  <insert id="insertItem">
+    INSERT INTO player_inventory
+    VALUES
+    (
+    #{playerId},
+    #{itemId},
+    #{quantity}
+    )
+  </insert>
+
+  <update id="UpdateItemQuantity">
+    UPDATE player_inventory
+    SET quantity = #{quantity} + quantity
+    WHERE playerId = #{playerId}
+    AND itemId = #{itemId}
+  </update>
+
+</mapper>
